@@ -1,7 +1,8 @@
 :root {
-  --red: #d80621;
-  --red-deep: #8e1020;
-  --ink: #3d1218;
+  --red: #b84560;
+  --red-deep: #79354a;
+  --ink: #49333e;
+  --rose: #dfa4b0;
   --cream: #fff7f6;
   --gold: #f2c14b;
 }
@@ -127,10 +128,15 @@ h1 {
 
 .page-welcome {
   color: var(--red-deep);
-  background: linear-gradient(90deg, var(--red) 0 25%, #fff 25% 75%, var(--red) 75% 100%);
+  background:
+    linear-gradient(180deg, rgba(255, 247, 242, 0.36), transparent 48%, rgba(223, 208, 235, 0.3)),
+    linear-gradient(90deg, var(--rose) 0 25%, #fff9f5 25% 75%, var(--rose) 75% 100%);
 }
 
-.page-instructions { background: linear-gradient(150deg, #fff7f6, #ffe4ea); }
+.page-instructions {
+  background: radial-gradient(ellipse at 10% 10%, #fbe1df, transparent 65%),
+    linear-gradient(150deg, #fff9f2, #eee5f3);
+}
 
 .instruction-layout {
   min-height: 100%;
@@ -180,22 +186,20 @@ h1 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  width: min(92vw, 460px);
+  gap: 24px;
+  width: min(92vw, 640px);
   margin: 0 auto;
-  padding: calc(18px + env(safe-area-inset-top)) 0 210px;
+  padding: calc(100px + env(safe-area-inset-top)) 0 120px;
   text-align: center;
 }
 
 .eyebrow {
   margin: 0;
-  padding: 0.2em 0.7em;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.92);
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  font-size: 0.78rem;
+  font-family: "Great Vibes", "Apple Chancery", cursive;
+  font-weight: 400;
+  font-size: clamp(2.2rem, 6vw, 3.8rem);
+  line-height: 1.2;
+  text-wrap: balance;
 }
 
 .page-welcome h1 {
@@ -260,7 +264,7 @@ h1 {
 .portrait {
   position: relative;
   z-index: 1;
-  width: min(34vw, 200px);
+  width: min(48vw, 240px);
   aspect-ratio: 1;
   border-radius: 50%;
   padding: 6px;
@@ -335,8 +339,8 @@ h1 {
 
 .page-letter {
   background:
-    linear-gradient(90deg, var(--red) 0 16px, transparent 16px calc(100% - 16px), var(--red) calc(100% - 16px)),
-    linear-gradient(180deg, #fff8f6, #ffe4ea);
+    linear-gradient(90deg, var(--rose) 0 16px, transparent 16px calc(100% - 16px), var(--rose) calc(100% - 16px)),
+    linear-gradient(160deg, #fff9f2, #f4e5ee);
 }
 
 .letter {
@@ -375,8 +379,8 @@ h1 {
 
 .page-memories {
   background:
-    radial-gradient(circle at 12% 0%, rgba(216, 6, 33, 0.09), transparent 28%),
-    linear-gradient(180deg, #fff, #fff1f4);
+    radial-gradient(ellipse at 12% 0%, #efd5df, transparent 60%),
+    linear-gradient(150deg, #fffbf5, #eae5f3);
 }
 
 .section-head { text-align: center; margin-bottom: 18px; }
@@ -417,7 +421,7 @@ h1 {
   color: #fffaf8;
   background:
     linear-gradient(90deg, rgba(255, 255, 255, 0.16) 0 8px, transparent 8px calc(100% - 8px), rgba(255, 255, 255, 0.16) calc(100% - 8px)),
-    radial-gradient(ellipse at 50% 42%, #9a1830 0%, #4a0712 68%);
+    radial-gradient(ellipse at 50% 42%, #a87689 0%, #674452 80%);
 }
 
 .cake-layout { text-align: center; }
@@ -644,8 +648,8 @@ h1 {
 
 .page-note {
   background:
-    linear-gradient(90deg, rgba(216, 6, 33, 0.16), transparent 14%, transparent 86%, rgba(216, 6, 33, 0.16)),
-    linear-gradient(180deg, #fffdfb, #ffe8ee);
+    radial-gradient(ellipse at 90% 10%, #e6dbf0, transparent 65%),
+    linear-gradient(160deg, #fff9f2, #f3dfe6);
 }
 
 .note-layout { text-align: center; }
@@ -675,7 +679,7 @@ h1 {
 
 .page-finale {
   color: #fffaf8;
-  background: linear-gradient(165deg, #9e1424, #4c0914 70%);
+  background: linear-gradient(150deg, #a9788c, #64475d 80%);
 }
 
 .finale-bg {
@@ -886,7 +890,7 @@ h1 {
 }
 
 @media (max-height: 760px) {
-  .welcome-content { padding-bottom: 188px; gap: 6px; }
+  .welcome-content { padding-top: 90px; padding-bottom: 110px; gap: 16px; }
   .page-welcome h1 { font-size: 2.7rem; }
   .instructions { font-size: 0.88rem; }
   .instructions li { margin: 0.15rem 0; }
@@ -894,8 +898,8 @@ h1 {
 
 @media (min-width: 900px) {
   .page-letter { background:
-    linear-gradient(90deg, var(--red) 0 8vw, transparent 8vw calc(100% - 8vw), var(--red) calc(100% - 8vw)),
-    linear-gradient(180deg, #fff8f6, #ffe4ea);
+    linear-gradient(90deg, var(--rose) 0 8vw, transparent 8vw calc(100% - 8vw), var(--rose) calc(100% - 8vw)),
+    linear-gradient(160deg, #fff9f2, #f4e5ee);
   }
 }
 
