@@ -205,6 +205,20 @@
 
   <div id="celebration" hidden></div>
 
+  <audio id="background-music" src="media/yumeno.mp3" loop preload="metadata"></audio>
+  <div class="music-controls" role="group" aria-label="Background music">
+    <button id="music-toggle" type="button" aria-label="Play background music" aria-pressed="false" title="Play background music">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M9 18V5l12-2v13M9 8l12-2"/>
+        <ellipse cx="6" cy="18" rx="3" ry="3"/><ellipse cx="18" cy="16" rx="3" ry="3"/>
+        <path class="music-off" d="m3 3 18 18"/>
+      </svg>
+    </button>
+    <label class="sr-only" for="music-volume">Music volume</label>
+    <input id="music-volume" type="range" min="0" max="100" value="35" aria-label="Music volume">
+    <span id="music-status" class="sr-only" role="status"></span>
+  </div>
+
   <nav class="nav" aria-label="Pages">
     <button id="back" class="back" type="button">Back</button>
     <div class="nav-center">

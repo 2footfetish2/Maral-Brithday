@@ -331,4 +331,54 @@ relightButton.addEventListener("click", () => {
   updateHint();
 });
 
+const backgroundMusic = document.getElementById("background-music");
+const musicToggle = document.getElementById("music-toggle");
+const musicVolume = document.getElementById("music-volume");
+const musicStatus = document.getElementById("music-status");
+let musicChosen = false;
+backgroundMusic.volume = Number(musicVolume.value) / 100;
+
+function updateMusicControl() {
+  const playing = !backgroundMusic.paused;
+  const label = playing ? "Pause background music" : "Play background music";
+  musicToggle.setAttribute("aria-pressed", String(playing));
+  musicToggle.setAttribute("aria-label", label);
+  musicToggle.title = label;
+}
+
+function playMusic() {
+  musicStatus.textContent = "";
+  backgroundMusic.play().catch(() => {
+    musicStatus.textContent = "Music could not start. Press the music button to try again.";
+    updateMusicControl();
+  });
+}
+
+musicToggle.addEventListener("click", () => {
+  musicChosen = true;
+  if (backgroundMusic.paused) playMusic();
+  else backgroundMusic.pause();
+});
+
+musicVolume.addEventListener("input", () => {
+  backgroundMusic.volume = Number(musicVolume.value) / 100;
+});
+
+backgroundMusic.addEventListener("play", updateMusicControl);
+backgroundMusic.addEventListener("pause", updateMusicControl);
+backgroundMusic.addEventListener("error", () => {
+  musicStatus.textContent = "Background music is unavailable.";
+  updateMusicControl();
+});
+
+function startMusicOnInteraction(event) {
+  if (musicChosen || event.target.closest(".music-controls")) return;
+  if (event.type === "keydown" && !["Enter", " ", "ArrowLeft", "ArrowRight"].includes(event.key)) return;
+  musicChosen = true;
+  playMusic();
+}
+
+document.addEventListener("click", startMusicOnInteraction);
+document.addEventListener("keydown", startMusicOnInteraction);
+
 render();
