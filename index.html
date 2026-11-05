@@ -24,7 +24,22 @@
   <p class="sr-only" id="page-status" aria-live="polite"></p>
 
   <main id="book">
-    <section class="page page-welcome is-active" data-title="Welcome" aria-label="Welcome">
+    <section class="page page-instructions is-active" data-title="Instructions" aria-labelledby="instruction-heading">
+      <div class="instruction-layout">
+        <article class="instruction-card">
+          <h1 id="instruction-heading">Instruction for my cutest cousin GooMaral</h1>
+          <ol>
+            <li>Put the music on the top right corner to listen it while going to the next pages and adjust the volume</li>
+            <li>Read every descriptions that are on every photos</li>
+            <li>Press on <strong>NEXT PAGE</strong> to go on next page or swipe to left to go to next page</li>
+            <li>Text me back if you opened my new and first project i worked on</li>
+            <li>Lastly, love you egch</li>
+          </ol>
+        </article>
+      </div>
+    </section>
+
+    <section class="page page-welcome" data-title="Welcome" hidden aria-label="Welcome">
       <div class="welcome-content">
         <p class="eyebrow">A birthday book for</p>
         <div class="portrait-wrap">
@@ -33,14 +48,6 @@
         </div>
         </div>
         <h1>Maral</h1>
-        <div class="instructions">
-          <p class="instructions-title">Huurhun Maralaa egchid uguh instruction</p>
-          <ol>
-            <li>Tap <strong>Next</strong> at the bottom to move forward. <strong>Back</strong> returns to the page you just left.</li>
-            <li>There are six pages: this hello, a letter, our photos, a cake, a note, and a last surprise.</li>
-            <li>On the cake, tap each candle. When all three flames go out, something lovely happens.</li>
-          </ol>
-        </div>
       </div>
     </section>
 
@@ -229,10 +236,11 @@
         <span class="dot"></span>
         <span class="dot"></span>
         <span class="dot"></span>
+        <span class="dot"></span>
       </div>
-      <p class="count"><span id="current">1</span> / 6</p>
+      <p class="count"><span id="current">1</span> / 7</p>
     </div>
-    <button id="next" class="next" type="button">Next</button>
+    <button id="next" class="next" type="button">NEXT PAGE</button>
   </nav>
 
   <script src="app.js" defer></script>
