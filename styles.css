@@ -95,21 +95,7 @@ h1 {
 
 .page-welcome {
   color: var(--red-deep);
-}
-
-.flag {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-}
-
-.flag .bar { background: var(--red); }
-
-.flag .field {
-  background: #fff;
-  display: grid;
-  place-items: center;
+  background: linear-gradient(90deg, var(--red) 0 25%, #fff 25% 75%, var(--red) 75% 100%);
 }
 
 .sprite {
@@ -124,14 +110,6 @@ h1 {
   display: grid;
   place-items: center;
   width: min(62vw, 360px);
-}
-
-.flag-leaf {
-  position: absolute;
-  width: 92%;
-  height: auto;
-  color: var(--red);
-  z-index: 0;
 }
 
 .welcome-content {
@@ -277,9 +255,23 @@ h1 {
   opacity: 0;
 }
 
-html.can-edit .empty > .upload { display: grid; }
+.empty > .upload { display: grid; }
+
+.ready > .upload {
+  display: grid;
+  inset: auto 12px 12px;
+  padding: 6px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+}
+
+.ready > .upload small { display: none; }
+
+.upload:focus-within { outline: 3px solid var(--red); outline-offset: 2px; }
 
 .portrait .upload { border-radius: 50%; inset: 8px; }
+
+.portrait.ready .upload { inset: auto 20px 16px; border-radius: 12px; }
 
 .page-letter {
   background:

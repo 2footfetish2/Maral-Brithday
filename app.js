@@ -7,7 +7,6 @@ const current = document.getElementById("current");
 let index = 0;
 
 const photoUrls = {
-  maral: ["media/maral.jpg", "media/maral.jpeg", "media/maral.png", "media/maral.webp"],
   "memory-1": ["media/memory-1.jpg", "media/memory-1.jpeg", "media/memory-1.png", "media/memory-1.webp"],
   "memory-2": ["media/memory-2.jpg", "media/memory-2.jpeg", "media/memory-2.png", "media/memory-2.webp"],
   "memory-3": ["media/memory-3.jpg", "media/memory-3.jpeg", "media/memory-3.png", "media/memory-3.webp"],
@@ -19,6 +18,7 @@ const photoUrls = {
 const videoUrls = ["media/message.mp4", "media/message.webm", "media/message.mov"];
 
 function render() {
+  if (!pages[index].classList.contains("page-cake")) clearCelebration();
   pages.forEach((page, i) => {
     const on = i === index;
     page.hidden = !on;
@@ -167,26 +167,42 @@ const messageVideo = document.querySelector(".video-frame video");
 useFirstWorkingVideo(messageVideo, videoUrls);
 
 function applyFile(slot, file) {
-  if (!file) return;
+  if (!file || slot.dataset.locked === "true") return;
+  const isVideo = slot.dataset.slot === "video";
+  if (!file.type.startsWith(isVideo ? "video/" : "image/")) return;
+  const previousUrl = slot.dataset.objectUrl;
   const url = URL.createObjectURL(file);
+  slot.dataset.objectUrl = url;
   slot.dataset.preview = "true";
-  if (slot.dataset.slot === "video") {
+  const markReady = () => {
+    slot.classList.add("ready");
+    slot.classList.remove("empty");
+    slot.querySelector(".upload > span").textContent = isVideo ? "Change video" : "Change photo";
+  };
+  if (previousUrl) URL.revokeObjectURL(previousUrl);
+  if (isVideo) {
     const video = slot.querySelector("video");
+    video.onloadeddata = markReady;
+    video.onerror = null;
     video.src = url;
     video.load();
     return;
   }
   if (slot.dataset.slot === "finale-bg") {
     slot.style.backgroundImage = `url("${url}")`;
-    slot.classList.add("ready");
-    slot.classList.remove("empty");
+    markReady();
     return;
   }
   const img = slot.querySelector("img");
-  if (img) img.src = url;
+  if (img) {
+    img.onload = markReady;
+    img.onerror = null;
+    img.src = url;
+  }
 }
 
 document.querySelectorAll("[data-slot]").forEach((slot) => {
+  if (slot.dataset.locked === "true") return;
   const input = slot.querySelector('input[type="file"]');
   if (input) {
     input.addEventListener("change", () => {
@@ -195,12 +211,10 @@ document.querySelectorAll("[data-slot]").forEach((slot) => {
   }
 
   slot.addEventListener("dragover", (event) => {
-    if (!document.documentElement.classList.contains("can-edit")) return;
     event.preventDefault();
   });
 
   slot.addEventListener("drop", (event) => {
-    if (!document.documentElement.classList.contains("can-edit")) return;
     event.preventDefault();
     applyFile(slot, event.dataTransfer.files && event.dataTransfer.files[0]);
   });
@@ -300,11 +314,15 @@ candles.forEach((candle) => {
   });
 });
 
-relightButton.addEventListener("click", () => {
+function clearCelebration() {
   document.body.classList.remove("is-celebrating");
   celebration.innerHTML = "";
   celebration.hidden = true;
   celebration.removeAttribute("aria-label");
+}
+
+relightButton.addEventListener("click", () => {
+  clearCelebration();
   candles.forEach((candle) => {
     candle.classList.remove("out");
     candle.setAttribute("aria-pressed", "false");
