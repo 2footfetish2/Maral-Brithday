@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#d80621">
+  <meta name="description" content="A birthday book for Maral, page by page.">
+  <meta property="og:title" content="Happy birthday, Maral">
+  <meta property="og:description" content="A little birthday book, made just for you.">
+  <title>For Maral</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 120'%3E%3Cpath fill='%23d80621' d='M50 4 58 22 52 28 78 16 70 36 98 40 74 52 90 74 64 66 70 98 54 86 50 116 46 86 30 98 36 66 10 74 26 52 2 40 30 36 22 16 48 28 42 22Z'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Great+Vibes&family=Nunito:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    (function () {
+      var host = location.hostname;
+      if (host === "" || host === "localhost" || host === "127.0.0.1") {
+        document.documentElement.classList.add("can-edit");
+      }
+    })();
+  </script>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" class="sprite" aria-hidden="true">
+    <symbol id="maple" viewBox="0 0 100 120">
+      <path d="M50 4 58 22 52 28 78 16 70 36 98 40 74 52 90 74 64 66 70 98 54 86 50 116 46 86 30 98 36 66 10 74 26 52 2 40 30 36 22 16 48 28 42 22Z"/>
+    </symbol>
+  </svg>
+
+  <p class="sr-only" id="page-status" aria-live="polite"></p>
+
+  <main id="book">
+    <section class="page page-welcome is-active" data-title="Welcome" aria-label="Welcome">
+      <div class="flag" aria-hidden="true">
+        <span class="bar"></span>
+        <span class="field"></span>
+        <span class="bar"></span>
+      </div>
+      <div class="welcome-content">
+        <p class="eyebrow">A birthday book for</p>
+        <div class="portrait-wrap">
+        <svg class="flag-leaf" viewBox="0 0 100 120" aria-hidden="true"><use href="#maple"/></svg>
+        <div class="frame portrait empty" data-slot="maral">
+          <img alt="Maral">
+          <span class="placeholder" aria-hidden="true"><svg viewBox="0 0 100 120"><use href="#maple"/></svg></span>
+          <label class="upload">
+            <span>Add Maral’s photo</span>
+            <small>Save it as media/maral.jpg</small>
+            <input type="file" accept="image/*">
+          </label>
+        </div>
+        </div>
+        <h1>Maral</h1>
+        <div class="instructions">
+          <p class="instructions-title">How to turn the pages</p>
+          <ol>
+            <li>Tap <strong>Next</strong> at the bottom to move forward. <strong>Back</strong> returns to the page you just left.</li>
+            <li>There are six pages: this hello, a letter, our photos, a cake, a note, and a last surprise.</li>
+            <li>On the cake, tap each candle. When all three flames go out, something lovely happens.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="page page-letter" data-title="Birthday greeting" hidden aria-label="Birthday greeting">
+      <div class="page-inner">
+        <div class="flag-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+        <article class="letter">
+          <h1>Happy birthday</h1>
+          <p class="greeting">Maral egch,</p>
+          <p>You make ordinary days feel warmer. I am grateful you are my cousin, my egch, and someone whose kindness feels like home.</p>
+          <p>I hope this year gives you the kind of joy you give everyone else. Slow mornings. Laughs you do not see coming. Wishes that come true.</p>
+          <p>I made these pages so you could hold that feeling for a little while.</p>
+          <p class="signoff">Happy birthday. I love you.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="page page-memories" data-title="Our memories" hidden aria-label="Our memories">
+      <div class="page-inner">
+        <div class="flag-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+        <header class="section-head">
+          <h1>Our memories</h1>
+          <p>A few pictures of us, saved in one place for you.</p>
+        </header>
+        <!-- Edit the figcaption lines anytime. Photos belong in the media folder. -->
+        <div class="memories">
+          <figure class="memory">
+            <div class="frame empty" data-slot="memory-1">
+              <img alt="Maral and me, first memory">
+              <span class="placeholder" aria-hidden="true"><svg viewBox="0 0 100 120"><use href="#maple"/></svg></span>
+              <label class="upload">
+                <span>Add a photo</span>
+                <small>media/memory-1.jpg</small>
+                <input type="file" accept="image/*">
+              </label>
+            </div>
+            <figcaption>Together</figcaption>
+          </figure>
+          <figure class="memory">
+            <div class="frame empty" data-slot="memory-2">
+              <img alt="Maral and me, second memory">
+              <span class="placeholder" aria-hidden="true"><svg viewBox="0 0 100 120"><use href="#maple"/></svg></span>
+              <label class="upload">
+                <span>Add a photo</span>
+                <small>media/memory-2.jpg</small>
+                <input type="file" accept="image/*">
+              </label>
+            </div>
+            <figcaption>This smile</figcaption>
+          </figure>
+          <figure class="memory">
+            <div class="frame empty" data-slot="memory-3">
+              <img alt="Maral and me, third memory">
+              <span class="placeholder" aria-hidden="true"><svg viewBox="0 0 100 120"><use href="#maple"/></svg></span>
+              <label class="upload">
+                <span>Add a photo</span>
+                <small>media/memory-3.jpg</small>
+                <input type="file" accept="image/*">
+              </label>
+            </div>
+            <figcaption>A favorite day</figcaption>
+          </figure>
+          <figure class="memory">
+            <div class="frame empty" data-slot="memory-4">
+              <img alt="Maral and me, fourth memory">
+              <span class="placeholder" aria-hidden="true"><svg viewBox="0 0 100 120"><use href="#maple"/></svg></span>
+              <label class="upload">
+                <span>Add a photo</span>
+                <small>media/memory-4.jpg</small>
+                <input type="file" accept="image/*">
+              </label>
+            </div>
+            <figcaption>Always us</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="page page-cake" data-title="Birthday cake" hidden aria-label="Birthday cake">
+      <div class="page-inner cake-layout">
+        <div class="flag-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+        <h1>Make a wish</h1>
+        <p id="cake-hint" class="cake-hint">Tap each candle to blow it out</p>
+        <div class="cake" id="cake">
+          <div class="candles">
+            <button class="candle" type="button" aria-pressed="false" aria-label="Blow out the left candle">
+              <span class="flame" aria-hidden="true"></span>
+              <span class="smoke" aria-hidden="true"></span>
+              <span class="wax"></span>
+            </button>
+            <button class="candle candle-tall" type="button" aria-pressed="false" aria-label="Blow out the middle candle">
+              <span class="flame" aria-hidden="true"></span>
+              <span class="smoke" aria-hidden="true"></span>
+              <span class="wax"></span>
+            </button>
+            <button class="candle" type="button" aria-pressed="false" aria-label="Blow out the right candle">
+              <span class="flame" aria-hidden="true"></span>
+              <span class="smoke" aria-hidden="true"></span>
+              <span class="wax"></span>
+            </button>
+          </div>
+          <div class="tier tier-top">
+            <div class="drips" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <p class="icing-name">Maral</p>
+          </div>
+          <div class="tier tier-bottom" aria-hidden="true">
+            <span class="ribbon-band"></span>
+            <svg class="bow" viewBox="0 0 80 36">
+              <path fill="#fff" d="M40 18c-8-14-28-14-32-4 6 2 14 8 18 12-8 2-20 4-22 10 10-2 20-8 26-12 2 8 6 16 10 16s8-8 10-16c6 4 16 10 26 12-2-6-14-8-22-10 4-4 12-10 18-12-4-10-24-10-32 4z"/>
+              <circle cx="40" cy="18" r="5" fill="#d80621"/>
+            </svg>
+          </div>
+          <div class="plate" aria-hidden="true"></div>
+        </div>
+        <button id="relight" class="relight" type="button" hidden>Light the candles again</button>
+      </div>
+    </section>
+
+    <section class="page page-note" data-title="Special message" hidden aria-label="Special message">
+      <div class="page-inner note-layout">
+        <div class="flag-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+        <h1>Love my dearest cousin Maral egch</h1>
+        <figure class="together-wrap">
+          <div class="frame polaroid empty" data-slot="together">
+            <img alt="Maral and me together">
+            <span class="placeholder" aria-hidden="true"><svg viewBox="0 0 100 120"><use href="#maple"/></svg></span>
+            <label class="upload">
+              <span>Add our photo</span>
+              <small>media/together.jpg</small>
+              <input type="file" accept="image/*">
+            </label>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <section class="page page-finale" data-title="Final surprise" hidden aria-label="Final surprise">
+      <div class="finale-bg empty" data-slot="finale-bg" aria-hidden="true">
+        <label class="upload bg-upload">
+          <span>Add a background photo</span>
+          <small>media/finale-bg.jpg</small>
+          <input type="file" accept="image/*">
+        </label>
+      </div>
+      <div class="page-inner finale-layout">
+        <div class="flag-bar light" aria-hidden="true"><span></span><span></span><span></span></div>
+        <h1>Have an amazing birthday celebration!</h1>
+        <div class="video-frame empty" data-slot="video">
+          <video controls playsinline preload="metadata" aria-label="A birthday message recorded for Maral"></video>
+          <span class="placeholder" aria-hidden="true"><svg viewBox="0 0 100 120"><use href="#maple"/></svg></span>
+          <label class="upload">
+            <span>Add your video</span>
+            <small>media/message.mp4</small>
+            <input type="file" accept="video/*">
+          </label>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="celebration" hidden></div>
+
+  <nav class="nav" aria-label="Pages">
+    <button id="back" class="back" type="button">Back</button>
+    <div class="nav-center">
+      <div class="dots" aria-hidden="true">
+        <span class="dot on"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+      <p class="count"><span id="current">1</span> / 6</p>
+    </div>
+    <button id="next" class="next" type="button">Next</button>
+  </nav>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
