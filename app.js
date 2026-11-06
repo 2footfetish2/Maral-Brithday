@@ -13,6 +13,7 @@ const photoUrls = {
 const videoUrls = ["media/message.mp4", "media/message.webm", "media/message.mov"];
 
 function render() {
+  lastPhotoTap = null;
   document.getElementById("candle-warning").hidden = true;
   if (!pages[index].classList.contains("page-cake")) clearCelebration();
   pages.forEach((page, i) => {
@@ -516,11 +517,34 @@ function showKissSplash() {
   }).catch(() => {});
 }
 
-document.addEventListener("click", (event) => {
-  const target = event.target;
-  if (!(target instanceof Element) || target.closest(".music-controls, .upload, input, video")) return;
-  if (target.closest("#next") && pages[index].classList.contains("page-cake") && remainingCandles() > 0) return;
-  if (target.closest("#next:not(:disabled), #back:not(:disabled), .page img, .page h1, .page h2, .page h3, .page p, .page li, .page figcaption, .love-credit")) showKissSplash();
-}, { capture: true });
+let photoPress = null;
+let lastPhotoTap = null;
+
+document.addEventListener("pointerdown", (event) => {
+  const image = event.target instanceof Element ? event.target.closest(".page img") : null;
+  if (!image || !event.isPrimary || event.button !== 0) {
+    photoPress = null;
+    lastPhotoTap = null;
+    return;
+  }
+  photoPress = { image, id: event.pointerId, x: event.clientX, y: event.clientY, time: event.timeStamp };
+});
+
+document.addEventListener("pointerup", (event) => {
+  const press = photoPress;
+  photoPress = null;
+  if (!press || press.id !== event.pointerId) return;
+  if (event.timeStamp - press.time > 500 || Math.hypot(event.clientX - press.x, event.clientY - press.y) > 12) {
+    lastPhotoTap = null;
+    return;
+  }
+  if (lastPhotoTap && lastPhotoTap.image === press.image && event.timeStamp - lastPhotoTap.time < 380 && Math.hypot(event.clientX - lastPhotoTap.x, event.clientY - lastPhotoTap.y) < 30) {
+    lastPhotoTap = null;
+    showKissSplash();
+  } else {
+    lastPhotoTap = { image: press.image, time: event.timeStamp, x: event.clientX, y: event.clientY };
+  }
+});
+document.addEventListener("pointercancel", () => { photoPress = null; lastPhotoTap = null; });
 
 render();

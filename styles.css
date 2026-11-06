@@ -12,6 +12,8 @@
 .type-character { transition: opacity 80ms linear; }
 .type-pending { opacity: 0; }
 
+.page img { touch-action: manipulation; -webkit-user-drag: none; user-select: none; }
+
 #candle-warning {
   position: fixed;
   bottom: calc(130px + env(safe-area-inset-bottom));
