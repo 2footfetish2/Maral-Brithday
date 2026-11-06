@@ -631,14 +631,29 @@ h1 {
   width: 18px;
   height: 28px;
   margin-bottom: -6px;
-  border-radius: 50% 50% 46% 46%;
+  border-radius: 65% 35% 45% 45%;
   background: radial-gradient(circle at 50% 78%, #fff6c2, #ffb703 38%, #ff4d00 68%, transparent 72%);
   filter: drop-shadow(0 0 10px #ffb000);
   transform-origin: center bottom;
-  animation: flicker 0.28s infinite alternate;
+  animation: flicker 0.85s ease-in-out infinite;
   position: relative;
   z-index: 1;
 }
+
+.flame::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 13px;
+  left: 6px;
+  bottom: 4px;
+  border-radius: 60% 40% 45% 45%;
+  background: linear-gradient(#fffef1, #ffe990);
+  animation: flame-core 0.4s ease-in-out infinite alternate;
+}
+.candle:nth-child(2) .flame { animation-duration: 1.05s; animation-delay: -0.35s; }
+.candle:nth-child(3) .flame { animation-duration: 0.72s; animation-delay: -0.55s; }
+.candle.out .flame::after { animation: none; }
 
 .candle-tall .wax { height: 84px; }
 
@@ -687,8 +702,16 @@ h1 {
 .candle.out .smoke { animation: puff 0.9s ease-out forwards; }
 
 @keyframes flicker {
-  from { transform: scale(1) rotate(-4deg); }
-  to { transform: scale(1.08, 0.9) rotate(4deg); }
+  0%, 100% { transform: translateX(-1px) rotate(-9deg) scale(0.95, 1.06); filter: drop-shadow(0 0 8px #ff9f00); }
+  20% { transform: translateX(2px) rotate(10deg) scale(1.12, 0.88); filter: drop-shadow(0 0 15px #ffb000); }
+  43% { transform: translateX(-2px) rotate(-13deg) scale(0.85, 1.2); filter: drop-shadow(0 0 11px #ff8c00); }
+  65% { transform: translateX(1px) rotate(7deg) scale(1.05, 0.95); filter: drop-shadow(0 0 18px #ffc400); }
+  82% { transform: rotate(-4deg) scale(0.92, 1.12); filter: drop-shadow(0 0 10px #ffa000); }
+}
+
+@keyframes flame-core {
+  from { opacity: 0.65; transform: scale(0.8, 0.9); }
+  to { opacity: 1; transform: scale(1.1, 1.15); }
 }
 
 @keyframes puff {
@@ -1086,7 +1109,7 @@ h1 {
 
 @media (prefers-reduced-motion: reduce) {
   .page.is-active { animation: none; }
-  .flame { animation: none; }
+  .flame { animation-duration: 1.4s; }
   .ribbon { animation: none; top: 0; }
 }
 
