@@ -797,6 +797,19 @@ h1 {
   overflow: hidden;
 }
 
+#bouncing-kiss {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: clamp(100px, 22vw, 220px);
+  height: auto;
+  z-index: 45;
+  border: 3px solid #fff;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(40, 0, 15, 0.3);
+  pointer-events: none;
+}
+
 .confetti, .balloon, .ribbon { position: absolute; }
 
 .confetti {

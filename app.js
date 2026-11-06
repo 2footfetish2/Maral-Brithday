@@ -14,6 +14,8 @@ const videoUrls = ["media/message.mp4", "media/message.webm", "media/message.mov
 
 function render() {
   if (!pages[index].classList.contains("page-cake")) clearCelebration();
+  if (pages[index].classList.contains("page-finale")) startKissBounce();
+  else stopKissBounce();
   pages.forEach((page, i) => {
     const on = i === index;
     page.hidden = !on;
@@ -348,6 +350,44 @@ relightButton.addEventListener("click", () => {
   relightButton.hidden = true;
   updateHint();
 });
+
+const bouncingKiss = document.getElementById("bouncing-kiss");
+let kissFrame = null;
+
+function stopKissBounce() {
+  if (kissFrame !== null) cancelAnimationFrame(kissFrame);
+  kissFrame = null;
+  bouncingKiss.hidden = true;
+}
+
+function startKissBounce() {
+  stopKissBounce();
+  bouncingKiss.hidden = false;
+  let x = 12;
+  let y = 84;
+  let vx = 180;
+  let vy = 145;
+  let previousTime = null;
+  bouncingKiss.style.transform = `translate(${x}px, ${y}px)`;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  function move(time) {
+    const dt = previousTime === null ? 0 : Math.min((time - previousTime) / 1000, 0.05);
+    previousTime = time;
+    const maxX = Math.max(12, window.innerWidth - bouncingKiss.offsetWidth - 12);
+    const minY = Math.min(84, Math.max(12, window.innerHeight - bouncingKiss.offsetHeight - 112));
+    const maxY = Math.max(minY, window.innerHeight - bouncingKiss.offsetHeight - 112);
+    x += vx * dt;
+    y += vy * dt;
+    if (x >= maxX) { x = maxX; vx = -Math.abs(vx); }
+    else if (x <= 12) { x = 12; vx = Math.abs(vx); }
+    if (y >= maxY) { y = maxY; vy = -Math.abs(vy); }
+    else if (y <= minY) { y = minY; vy = Math.abs(vy); }
+    bouncingKiss.style.transform = `translate(${x}px, ${y}px)`;
+    kissFrame = requestAnimationFrame(move);
+  }
+  kissFrame = requestAnimationFrame(move);
+}
 
 const backgroundMusic = document.getElementById("background-music");
 const musicToggle = document.getElementById("music-toggle");
