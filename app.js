@@ -7,8 +7,6 @@ const current = document.getElementById("current");
 let index = 0;
 
 const photoUrls = {
-  "memory-3": ["media/memory-3.jpg", "media/memory-3.jpeg", "media/memory-3.png", "media/memory-3.webp"],
-  "memory-4": ["media/memory-4.jpg", "media/memory-4.jpeg", "media/memory-4.png", "media/memory-4.webp"],
   together: ["media/together.jpg", "media/together.jpeg", "media/together.png", "media/together.webp"],
   "finale-bg": ["media/finale-bg.jpg", "media/finale-bg.jpeg", "media/finale-bg.png", "media/finale-bg.webp"]
 };
