@@ -14,8 +14,6 @@ const videoUrls = ["media/message.mp4", "media/message.webm", "media/message.mov
 
 function render() {
   if (!pages[index].classList.contains("page-cake")) clearCelebration();
-  if (pages[index].classList.contains("page-finale")) startKissBounce();
-  else stopKissBounce();
   pages.forEach((page, i) => {
     const on = i === index;
     page.hidden = !on;
@@ -350,42 +348,6 @@ relightButton.addEventListener("click", () => {
   relightButton.hidden = true;
   updateHint();
 });
-
-const bouncingKiss = document.getElementById("bouncing-kiss");
-let kissFrame = null;
-
-function stopKissBounce() {
-  if (kissFrame !== null) cancelAnimationFrame(kissFrame);
-  kissFrame = null;
-  bouncingKiss.hidden = true;
-}
-
-function startKissBounce() {
-  stopKissBounce();
-  bouncingKiss.hidden = false;
-  let x = 0;
-  let y = 0;
-  let vx = Math.max(180, window.innerWidth / 3);
-  let vy = Math.max(180, window.innerHeight / 3);
-  let previousTime = null;
-  bouncingKiss.style.transform = `translate(${x}px, ${y}px)`;
-
-  function move(time) {
-    const dt = previousTime === null ? 0 : Math.min((time - previousTime) / 1000, 0.05);
-    previousTime = time;
-    const maxX = Math.max(0, document.documentElement.clientWidth - bouncingKiss.offsetWidth);
-    const maxY = Math.max(0, window.innerHeight - bouncingKiss.offsetHeight);
-    x += vx * dt;
-    y += vy * dt;
-    if (x >= maxX) { x = maxX; vx = -Math.abs(vx); }
-    else if (x <= 0) { x = 0; vx = Math.abs(vx); }
-    if (y >= maxY) { y = maxY; vy = -Math.abs(vy); }
-    else if (y <= 0) { y = 0; vy = Math.abs(vy); }
-    bouncingKiss.style.transform = `translate(${x}px, ${y}px)`;
-    kissFrame = requestAnimationFrame(move);
-  }
-  kissFrame = requestAnimationFrame(move);
-}
 
 const backgroundMusic = document.getElementById("background-music");
 const musicToggle = document.getElementById("music-toggle");
