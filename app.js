@@ -363,26 +363,24 @@ function stopKissBounce() {
 function startKissBounce() {
   stopKissBounce();
   bouncingKiss.hidden = false;
-  let x = 12;
-  let y = 84;
-  let vx = 180;
-  let vy = 145;
+  let x = 0;
+  let y = 0;
+  let vx = Math.max(180, window.innerWidth / 3);
+  let vy = Math.max(180, window.innerHeight / 3);
   let previousTime = null;
   bouncingKiss.style.transform = `translate(${x}px, ${y}px)`;
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
   function move(time) {
     const dt = previousTime === null ? 0 : Math.min((time - previousTime) / 1000, 0.05);
     previousTime = time;
-    const maxX = Math.max(12, window.innerWidth - bouncingKiss.offsetWidth - 12);
-    const minY = Math.min(84, Math.max(12, window.innerHeight - bouncingKiss.offsetHeight - 112));
-    const maxY = Math.max(minY, window.innerHeight - bouncingKiss.offsetHeight - 112);
+    const maxX = Math.max(0, document.documentElement.clientWidth - bouncingKiss.offsetWidth);
+    const maxY = Math.max(0, window.innerHeight - bouncingKiss.offsetHeight);
     x += vx * dt;
     y += vy * dt;
     if (x >= maxX) { x = maxX; vx = -Math.abs(vx); }
-    else if (x <= 12) { x = 12; vx = Math.abs(vx); }
+    else if (x <= 0) { x = 0; vx = Math.abs(vx); }
     if (y >= maxY) { y = maxY; vy = -Math.abs(vy); }
-    else if (y <= minY) { y = minY; vy = Math.abs(vy); }
+    else if (y <= 0) { y = 0; vy = Math.abs(vy); }
     bouncingKiss.style.transform = `translate(${x}px, ${y}px)`;
     kissFrame = requestAnimationFrame(move);
   }
