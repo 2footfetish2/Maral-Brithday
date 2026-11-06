@@ -126,7 +126,6 @@ button {
 
 .page.is-active {
   display: block;
-  animation: page-in 0.38s ease-out;
 }
 
 @keyframes page-in {
@@ -168,11 +167,36 @@ h1 {
 }
 
 .page-welcome {
-  color: var(--red-deep);
-  background:
-    linear-gradient(180deg, rgba(255, 247, 242, 0.36), transparent 48%, rgba(223, 208, 235, 0.3)),
-    linear-gradient(90deg, var(--rose) 0 25%, #fff9f5 25% 75%, var(--rose) 75% 100%);
+  color: #ffe9b3;
+  background: repeating-linear-gradient(35deg, transparent 0 3px, rgba(255,255,255,0.025) 3px 4px),
+    linear-gradient(100deg, #370e20, #7c2944 12%, #641e37 80%, #370e20);
+  box-shadow: inset 18px 0 18px rgba(0,0,0,0.4), inset -6px 0 8px rgba(0,0,0,0.25);
 }
+
+.page-welcome::before {
+  content: "";
+  position: absolute;
+  left: 18px;
+  top: 20px;
+  bottom: 20px;
+  width: 8px;
+  border-left: 1px solid rgba(255,220,155,0.55);
+  border-right: 1px solid rgba(0,0,0,0.35);
+  pointer-events: none;
+}
+
+.page-welcome .welcome-content {
+  min-height: calc(100dvh - 40px);
+  width: min(84vw, 640px);
+  margin: 20px auto;
+  border: 1px solid rgba(255,220,155,0.65);
+  outline: 1px solid rgba(255,220,155,0.25);
+  outline-offset: -8px;
+  border-radius: 3px;
+}
+
+.page-welcome h1, .page-welcome .eyebrow, .page-welcome .welcome-signature { color: #ffe9b3; }
+.page-welcome .portrait { background: #ffe9b3; box-shadow: 0 12px 32px rgba(0,0,0,0.4); }
 
 .page-instructions {
   background: radial-gradient(ellipse at 10% 10%, #fbe1df, transparent 65%),

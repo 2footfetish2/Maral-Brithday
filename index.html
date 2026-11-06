@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Great+Vibes&family=Nunito:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=candle-gate-1">
+  <link rel="stylesheet" href="styles.css?v=book-turn-1">
 </head>
 <body>
   <svg xmlns="http://www.w3.org/2000/svg" class="sprite" aria-hidden="true">
@@ -24,7 +24,20 @@
   <p class="sr-only" id="page-status" aria-live="polite"></p>
 
   <main id="book">
-    <section class="page page-instructions is-active" data-title="Instructions" aria-labelledby="instruction-heading">
+    <section class="page page-welcome is-active" data-title="Welcome" aria-label="Welcome">
+      <div class="welcome-content">
+        <p class="eyebrow">A birthday book for</p>
+        <div class="portrait-wrap">
+        <div class="frame portrait ready" data-slot="maral" data-locked="true">
+          <img src="media/MARAL1.JPG" alt="Maral">
+        </div>
+        </div>
+        <h1>Maral</h1>
+        <p class="welcome-signature">From Enguun</p>
+      </div>
+    </section>
+
+    <section class="page page-instructions" hidden data-title="Instructions" aria-labelledby="instruction-heading">
       <div class="instruction-layout">
         <article class="instruction-card instruction-with-photo">
           <figure class="cute-photo">
@@ -57,19 +70,6 @@
           <p>Whenever I hear it, it brings me back to that memory with you.</p>
           <p class="song-credit">“Yume no Shizuku” — Takako Matsu</p>
         </article>
-      </div>
-    </section>
-
-    <section class="page page-welcome" data-title="Welcome" hidden aria-label="Welcome">
-      <div class="welcome-content">
-        <p class="eyebrow">A birthday book for</p>
-        <div class="portrait-wrap">
-        <div class="frame portrait ready" data-slot="maral" data-locked="true">
-          <img src="media/MARAL1.JPG" alt="Maral">
-        </div>
-        </div>
-        <h1>Maral</h1>
-        <p class="welcome-signature">From Enguun</p>
       </div>
     </section>
 
@@ -321,6 +321,6 @@
     <p class="love-credit">Made with love by Enguun, the best-looking little cousin you know.</p>
   </nav>
 
-  <script src="app.js?v=candle-gate-1" defer></script>
+  <script src="app.js?v=book-turn-1" defer></script>
 </body>
 </html>

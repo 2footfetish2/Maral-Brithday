@@ -52,17 +52,26 @@ async function go(step) {
 
   pageTransitioning = true;
   const outgoing = pages[index];
-  const fade = outgoing.animate(
-    [{ opacity: 1 }, { opacity: 0 }],
-    { duration: 220, easing: "ease-in", fill: "forwards" }
+  const origin = step > 0 ? "left center" : "right center";
+  const angle = step > 0 ? -90 : 90;
+  const turn = outgoing.animate(
+    [
+      { transform: "perspective(1800px) rotateY(0deg)", transformOrigin: origin, filter: "brightness(1)" },
+      { transform: `perspective(1800px) rotateY(${angle}deg)`, transformOrigin: origin, filter: "brightness(0.65)" }
+    ],
+    { duration: 360, easing: "ease-in", fill: "forwards" }
   );
   try {
-    await fade.finished.catch(() => {});
+    await turn.finished.catch(() => {});
     index = nextIndex;
     render();
-    await Promise.all(pages[index].getAnimations().map((animation) => animation.finished.catch(() => {})));
+    const incoming = pages[index].animate([
+      { transform: `perspective(1800px) rotateY(${-angle}deg)`, transformOrigin: origin, filter: "brightness(0.65)" },
+      { transform: "perspective(1800px) rotateY(0deg)", transformOrigin: origin, filter: "brightness(1)" }
+    ], { duration: 440, easing: "ease-out" });
+    await incoming.finished.catch(() => {});
   } finally {
-    fade.cancel();
+    turn.cancel();
     pageTransitioning = false;
   }
 }
