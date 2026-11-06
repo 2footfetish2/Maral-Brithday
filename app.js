@@ -29,6 +29,7 @@ function render() {
   document.querySelectorAll("video").forEach((video) => {
     if (!pages[index].contains(video)) video.pause();
   });
+  typePageText(pages[index]);
 }
 
 let pageTransitioning = false;
@@ -398,5 +399,51 @@ function startMusicOnInteraction(event) {
 
 document.addEventListener("click", startMusicOnInteraction);
 document.addEventListener("keydown", startMusicOnInteraction);
+
+let typingFrame = null;
+let typingCharacters = [];
+
+function typePageText(page) {
+  if (typingFrame !== null) cancelAnimationFrame(typingFrame);
+  typingCharacters.forEach((character) => character.classList.remove("type-pending"));
+  typingFrame = null;
+  typingCharacters = [];
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const targets = [...page.querySelectorAll("h1, h2, h3, p, li"), document.querySelector(".love-credit")].filter(Boolean);
+  targets.forEach((element) => {
+    if (element.closest("figcaption, .upload") || element.id === "cake-hint") return;
+    const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    while (walker.nextNode()) {
+      if (!walker.currentNode.parentElement.closest(".type-character")) nodes.push(walker.currentNode);
+    }
+    nodes.forEach((node) => {
+      if (!node.textContent.trim()) return;
+      const fragment = document.createDocumentFragment();
+      const letters = typeof Intl.Segmenter === "function"
+        ? Array.from(new Intl.Segmenter(undefined, { granularity: "grapheme" }).segment(node.textContent), (part) => part.segment)
+        : Array.from(node.textContent);
+      letters.forEach((letter) => {
+        const span = document.createElement("span");
+        span.className = "type-character";
+        span.textContent = letter;
+        fragment.appendChild(span);
+      });
+      node.replaceWith(fragment);
+    });
+    typingCharacters.push(...element.querySelectorAll(".type-character"));
+  });
+  typingCharacters.forEach((character) => character.classList.add("type-pending"));
+  let cursor = 0;
+  let started = null;
+  function tick(time) {
+    if (started === null) started = time;
+    const count = Math.min(typingCharacters.length, Math.floor((time - started) / 14) + 1);
+    while (cursor < count) typingCharacters[cursor++].classList.remove("type-pending");
+    typingFrame = cursor < typingCharacters.length ? requestAnimationFrame(tick) : null;
+  }
+  typingFrame = requestAnimationFrame(tick);
+}
 
 render();

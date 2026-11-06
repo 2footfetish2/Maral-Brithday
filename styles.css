@@ -9,6 +9,9 @@
 
 * { box-sizing: border-box; }
 
+.type-character { transition: opacity 80ms linear; }
+.type-pending { opacity: 0; }
+
 html, body {
   margin: 0;
   height: 100%;
