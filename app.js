@@ -7,7 +7,6 @@ const current = document.getElementById("current");
 let index = 0;
 
 const photoUrls = {
-  together: ["media/together.jpg", "media/together.jpeg", "media/together.png", "media/together.webp"],
   "finale-bg": ["media/finale-bg.jpg", "media/finale-bg.jpeg", "media/finale-bg.png", "media/finale-bg.webp"]
 };
 
