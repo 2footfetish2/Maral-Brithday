@@ -164,6 +164,30 @@ h1 {
 .instruction-card li + li { margin-top: 16px; }
 .instruction-card li::marker { color: var(--red); font-weight: 700; }
 
+.page-song {
+  background: radial-gradient(ellipse at 85% 10%, #efdce9, transparent 65%),
+    linear-gradient(150deg, #fff9f2, #eee5f3);
+}
+
+.song-story > p { line-height: 1.8; }
+.song-label {
+  margin: 0 0 16px;
+  color: var(--red);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.song-credit {
+  margin: 28px 0 0;
+  padding-top: 18px;
+  border-top: 1px solid #ecd5df;
+  color: var(--red-deep);
+  font-family: "Cormorant Garamond", Palatino, Georgia, serif;
+  font-size: 1.4rem;
+  font-style: italic;
+}
+
 .sprite {
   position: absolute;
   width: 0;
