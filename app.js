@@ -470,12 +470,23 @@ document.querySelectorAll(".memory").forEach((memory) => {
   envelope.addEventListener("click", async () => {
     envelope.disabled = true;
     envelope.setAttribute("aria-expanded", "true");
-    memory.classList.add("is-opening");
     if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      await envelope.animate([
-        { opacity: 1, transform: "translateY(0) scale(1)" },
-        { opacity: 0, transform: "translateY(-25px) scale(1.05)" }
-      ], { duration: 600, delay: 250, easing: "ease-in", fill: "forwards" }).finished.catch(() => {});
+      const artwork = envelope.innerHTML;
+      const halves = ["top", "bottom"].map((side) => {
+        const half = document.createElement("span");
+        half.className = `memory-envelope envelope-half envelope-half-${side}`;
+        half.innerHTML = artwork;
+        half.setAttribute("aria-hidden", "true");
+        envelope.appendChild(half);
+        return half;
+      });
+      memory.classList.add("is-opening");
+      await Promise.all(halves.map((half, i) => half.animate([
+        { opacity: 1, transform: "translate(0, 0) rotate(0deg)", offset: 0 },
+        { opacity: 1, transform: `translate(${i ? 8 : -8}px, ${i ? 12 : -12}px) rotate(${i ? 3 : -3}deg)`, offset: 0.3 },
+        { opacity: 0, transform: `translate(${i ? 45 : -45}px, ${i ? 100 : -100}px) rotate(${i ? 16 : -16}deg)`, offset: 1 }
+      ], { duration: 1100, easing: "cubic-bezier(.3,0,.2,1)", fill: "forwards" }).finished.catch(() => {})));
+      halves.forEach((half) => half.remove());
     }
     envelope.hidden = true;
     memory.classList.remove("is-sealed", "is-opening");
