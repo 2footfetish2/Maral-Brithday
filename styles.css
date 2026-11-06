@@ -170,6 +170,47 @@ h1 {
 }
 
 .song-story > p { line-height: 1.8; }
+
+.song-artwork {
+  position: relative;
+  width: min(76%, 240px);
+  margin: 30px auto;
+  padding: 10px;
+  border: 1px solid #ead8df;
+  border-radius: 8px;
+  background: #fffaf6;
+  box-shadow: 0 12px 28px rgba(90, 30, 55, 0.18), 5px 5px 0 #f1dce4;
+  transform: rotate(-3deg);
+}
+
+.song-artwork img { display: block; width: 100%; height: auto; border-radius: 3px; }
+
+.welcome-photos { display: flex; align-items: center; justify-content: center; gap: 20px; }
+.welcome-photos .portrait-wrap { width: auto; }
+
+.cute-photo {
+  position: relative;
+  width: clamp(110px, 28vw, 180px);
+  margin: 0;
+  padding: 8px 8px 24px;
+  background: #fffaf6;
+  border-radius: 4px;
+  box-shadow: 0 14px 28px rgba(90, 30, 55, 0.2);
+  transform: rotate(6deg);
+}
+
+.cute-photo::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 30%;
+  width: 40%;
+  height: 22px;
+  background: rgba(227, 190, 203, 0.7);
+  transform: rotate(-8deg);
+}
+
+.cute-photo img { display: block; width: 100%; height: auto; border-radius: 2px; }
 .song-label {
   margin: 0 0 16px;
   color: var(--red);
