@@ -1264,3 +1264,22 @@ h1 {
 .cake-flag svg { width: 100%; height: auto; display: block; box-shadow: 2px 3px 4px rgba(60,20,20,0.22); transform: rotate(-7deg); transform-origin: left; }
 .cake-flag-canada { left: calc(50% - 58px); transform: rotate(-8deg); }
 .cake-flag-mongolia { left: calc(50% + 22px); transform: rotate(8deg); }
+
+/* One envelope holds both photographs on each memories page. */
+.memory-packet { width: min(calc(100% - 16px), 800px); margin: 24px auto 0; }
+.memory-packet > .memory-envelope { width: min(100%, 500px); margin: 0 auto; min-height: 260px; transform: rotate(-2deg); }
+.memory-packet.is-sealed .memory-group-content { display: none; }
+.memory-packet .memories { width: 100%; }
+.memory-packet.is-open .memory { animation: memory-unfold 650ms ease-out both; }
+.memory-packet.is-open .memory:nth-child(2) { animation-delay: 150ms; }
+.memory-packet .memory-content { margin: 0; }
+@media (max-width: 700px) {
+  .memory-packet { width: min(calc(100% - 8px), 560px); }
+  .memory-packet .memories { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .memory-packet .memory-content { padding: 8px 8px 18px; }
+  .memory-packet .memory { transform: rotate(-1deg); }
+  .memory-packet .memory:nth-child(even) { transform: rotate(1deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .memory-packet.is-open .memory { animation: none; }
+}

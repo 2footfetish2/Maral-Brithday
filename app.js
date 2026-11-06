@@ -462,7 +462,7 @@ function typePageText(page) {
   typingFrame = requestAnimationFrame(tick);
 }
 
-document.querySelectorAll(".memory").forEach((memory) => {
+document.querySelectorAll(".memory-packet").forEach((memory) => {
   const envelope = memory.querySelector(".memory-envelope");
   if (!envelope) return;
   memory.classList.add("is-sealed");
@@ -491,7 +491,7 @@ document.querySelectorAll(".memory").forEach((memory) => {
     envelope.hidden = true;
     memory.classList.remove("is-sealed", "is-opening");
     memory.classList.add("is-open");
-    const content = memory.querySelector(".memory-content");
+    const content = memory.querySelector(".memory-group-content");
     content.tabIndex = -1;
     if (memory.closest(".page").classList.contains("is-active")) content.focus({ preventScroll: true });
   });
