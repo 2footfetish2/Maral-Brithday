@@ -229,7 +229,7 @@ function remainingCandles() {
 
 function updateHint() {
   const left = remainingCandles();
-  if (left === 3) cakeHint.textContent = "Tap each candle to blow it out";
+  if (left === 3) cakeHint.textContent = "Three candles glowing — tap them to make a wish!";
   else if (left === 2) cakeHint.textContent = "Two candles still glowing";
   else if (left === 1) cakeHint.textContent = "One candle left";
   else cakeHint.textContent = "Make a wish, Maral";
@@ -269,6 +269,7 @@ function celebrate() {
     balloon.style.left = `${4 + Math.random() * 88}%`;
     balloon.style.setProperty("--c", partyColors[i % partyColors.length]);
     balloon.style.setProperty("--end", end);
+    balloon.style.setProperty("--drift", `${12 + Math.random() * 20}px`);
     balloon.style.animationDuration = `${2.4 + Math.random() * 1.6}s`;
     balloon.style.animationDelay = `${Math.random() * 0.4}s`;
     balloon.addEventListener("animationend", (event) => {
@@ -289,6 +290,7 @@ function celebrate() {
     ribbon.style.left = `${Math.random() * 96}%`;
     ribbon.style.setProperty("--c", partyColors[i % partyColors.length]);
     ribbon.style.setProperty("--h", `${28 + Math.random() * 36}vh`);
+    ribbon.style.setProperty("--sway", `${10 + Math.random() * 10}deg`);
     ribbon.style.animationDelay = `${Math.random() * 0.25}s`;
     if (reduceMotion) {
       ribbon.style.animation = "none";

@@ -468,6 +468,16 @@ h1 {
   font-size: 1rem;
 }
 
+.cake-instructions {
+  max-width: 36rem;
+  margin: 12px auto;
+  padding: 12px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  line-height: 1.6;
+}
+
 .cake {
   width: min(92vw, 440px);
   margin: 0 auto;
@@ -903,7 +913,8 @@ h1 {
 }
 
 @keyframes bob {
-  50% { transform: translateY(12px); }
+  0%, 100% { transform: translate(0, 0) rotate(-5deg); }
+  50% { transform: translate(var(--drift, 22px), -24px) rotate(7deg); }
 }
 
 @keyframes ribbon-drop {
@@ -911,7 +922,8 @@ h1 {
 }
 
 @keyframes sway {
-  50% { transform: rotate(7deg); }
+  0%, 100% { transform: rotate(calc(-1 * var(--sway, 14deg))); }
+  50% { transform: rotate(var(--sway, 14deg)); }
 }
 
 @media (max-width: 420px) {
