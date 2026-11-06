@@ -950,6 +950,18 @@ h1 {
 
 .nav-center { text-align: center; }
 
+.love-credit {
+  grid-column: 1 / -1;
+  margin: 0;
+  text-align: right;
+  font-size: clamp(0.62rem, 1.4vw, 0.78rem);
+  line-height: 1.5;
+  font-style: italic;
+  color: #fff;
+  background: none;
+  pointer-events: none;
+}
+
 .dots { display: flex; gap: 7px; justify-content: center; }
 
 .dot {
