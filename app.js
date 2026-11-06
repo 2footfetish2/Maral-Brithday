@@ -408,7 +408,6 @@ function typePageText(page) {
   typingCharacters.forEach((character) => character.classList.remove("type-pending"));
   typingFrame = null;
   typingCharacters = [];
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
   const targets = [...page.querySelectorAll("h1, h2, h3, p, li"), document.querySelector(".love-credit")].filter(Boolean);
   targets.forEach((element) => {
@@ -439,7 +438,7 @@ function typePageText(page) {
   let started = null;
   function tick(time) {
     if (started === null) started = time;
-    const count = Math.min(typingCharacters.length, Math.floor((time - started) / 14) + 1);
+    const count = Math.min(typingCharacters.length, Math.max(0, Math.floor((time - started - 400) / 28) + 1));
     while (cursor < count) typingCharacters[cursor++].classList.remove("type-pending");
     typingFrame = cursor < typingCharacters.length ? requestAnimationFrame(tick) : null;
   }
