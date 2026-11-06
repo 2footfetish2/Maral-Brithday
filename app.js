@@ -452,21 +452,14 @@ function showKissSplash() {
   const run = ++kissSplashRun;
   kissSplash.getAnimations({ subtree: true }).forEach((animation) => animation.cancel());
   kissSplash.hidden = false;
-  const photo = kissSplash.querySelector(".kiss-splash-photo");
   const lipstick = kissSplash.querySelector(".kiss-lipstick");
-  const photoAnimation = photo.animate([
-    { opacity: 0, transform: "scale(0.035)", offset: 0 },
-    { opacity: 1, transform: "scale(1)", offset: 0.4 },
-    { opacity: 1, transform: "scale(1)", offset: 0.65 },
-    { opacity: 0, transform: "scale(1.08)", offset: 1 }
-  ], { duration: 1400, easing: "ease-in-out", fill: "both" });
   const lipstickAnimation = lipstick.animate([
     { opacity: 0, transform: "translate(-50%, -50%) scale(0.7)", offset: 0 },
     { opacity: 1, transform: "translate(-50%, -50%) scale(1)", offset: 0.08 },
     { opacity: 0.95, transform: "translate(-50%, -50%) scale(1)", offset: 0.35 },
     { opacity: 0, transform: "translate(-50%, -50%) scale(1.06)", offset: 1 }
-  ], { duration: 4000, delay: 1000, easing: "ease-out", fill: "both" });
-  Promise.all([photoAnimation.finished, lipstickAnimation.finished]).then(() => {
+  ], { duration: 4000, delay: 0, easing: "ease-out", fill: "both" });
+  lipstickAnimation.finished.then(() => {
     if (run === kissSplashRun) kissSplash.hidden = true;
   }).catch(() => {});
 }
