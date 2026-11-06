@@ -31,11 +31,32 @@ function render() {
   });
 }
 
-function go(step) {
+let pageTransitioning = false;
+
+async function go(step) {
   const nextIndex = index + step;
-  if (nextIndex < 0 || nextIndex >= pages.length) return;
-  index = nextIndex;
-  render();
+  if (pageTransitioning || nextIndex < 0 || nextIndex >= pages.length) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    index = nextIndex;
+    render();
+    return;
+  }
+
+  pageTransitioning = true;
+  const outgoing = pages[index];
+  const fade = outgoing.animate(
+    [{ opacity: 1 }, { opacity: 0 }],
+    { duration: 220, easing: "ease-in", fill: "forwards" }
+  );
+  try {
+    await fade.finished.catch(() => {});
+    index = nextIndex;
+    render();
+    await Promise.all(pages[index].getAnimations().map((animation) => animation.finished.catch(() => {})));
+  } finally {
+    fade.cancel();
+    pageTransitioning = false;
+  }
 }
 
 back.addEventListener("click", () => go(-1));

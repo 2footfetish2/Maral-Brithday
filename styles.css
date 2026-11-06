@@ -85,12 +85,12 @@ button {
 
 .page.is-active {
   display: block;
-  animation: page-in 0.55s ease;
+  animation: page-in 0.38s ease-out;
 }
 
 @keyframes page-in {
-  from { opacity: 0; transform: translateY(14px); }
-  to { opacity: 1; transform: none; }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .page-inner {
