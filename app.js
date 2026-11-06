@@ -462,6 +462,30 @@ function typePageText(page) {
   typingFrame = requestAnimationFrame(tick);
 }
 
+document.querySelectorAll(".memory").forEach((memory) => {
+  const envelope = memory.querySelector(".memory-envelope");
+  if (!envelope) return;
+  memory.classList.add("is-sealed");
+  envelope.hidden = false;
+  envelope.addEventListener("click", async () => {
+    envelope.disabled = true;
+    envelope.setAttribute("aria-expanded", "true");
+    memory.classList.add("is-opening");
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      await envelope.animate([
+        { opacity: 1, transform: "translateY(0) scale(1)" },
+        { opacity: 0, transform: "translateY(-25px) scale(1.05)" }
+      ], { duration: 600, delay: 250, easing: "ease-in", fill: "forwards" }).finished.catch(() => {});
+    }
+    envelope.hidden = true;
+    memory.classList.remove("is-sealed", "is-opening");
+    memory.classList.add("is-open");
+    const content = memory.querySelector(".memory-content");
+    content.tabIndex = -1;
+    if (memory.closest(".page").classList.contains("is-active")) content.focus({ preventScroll: true });
+  });
+});
+
 const kissSplash = document.getElementById("kiss-splash");
 let kissSplashRun = 0;
 

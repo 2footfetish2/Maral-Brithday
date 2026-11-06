@@ -1089,3 +1089,131 @@ h1 {
   .flame { animation: none; }
   .ribbon { animation: none; top: 0; }
 }
+
+/* Cloth-bound pages, keepsake envelopes, and the matching closing cover. */
+.page:not(.page-welcome) {
+  background:
+    radial-gradient(ellipse at 15% 8%, rgba(225, 168, 101, 0.18), transparent 58%),
+    repeating-linear-gradient(35deg, transparent 0 3px, rgba(255,255,255,0.02) 3px 4px),
+    linear-gradient(135deg, #371020, #7c2944 38%, #502039 76%, #2d1022);
+  color: #ffe9b3;
+  box-shadow: inset 12px 0 18px rgba(0,0,0,0.25);
+}
+.page:nth-child(even):not(.page-welcome) {
+  background:
+    radial-gradient(ellipse at 85% 15%, rgba(238,186,135,0.18), transparent 58%),
+    repeating-linear-gradient(35deg, transparent 0 3px, rgba(255,255,255,0.02) 3px 4px),
+    linear-gradient(145deg, #552039, #79304b 40%, #351225);
+}
+.page:not(.page-welcome)::after {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border: 1px solid rgba(255,220,155,0.3);
+  border-radius: 3px;
+  pointer-events: none;
+}
+.instruction-card, .letter { color: var(--ink); background: #fff9f0; }
+.page:not(.page-welcome) .page-inner { padding-top: calc(90px + env(safe-area-inset-top)); }
+.page-memories .section-head h1, .page-memories .section-head p,
+.page-note h1, .page-note .kiss-caption { color: #ffe9b3; }
+.cover-date {
+  position: absolute;
+  bottom: 125px;
+  left: 12px;
+  right: 12px;
+  margin: 0;
+  color: #ffe9b3;
+  font-family: "Cormorant Garamond", Palatino, Georgia, serif;
+  font-size: clamp(1rem, 4vw, 1.4rem);
+  letter-spacing: 0.05em;
+}
+.page-welcome .welcome-content { padding-bottom: 190px; }
+.page-back-cover .welcome-content { gap: 36px; padding: 110px 24px 140px; }
+.page-back-cover h1 { padding: 0; max-width: 12ch; line-height: 1.3; text-wrap: balance; }
+.cover-ornament { color: #e6c17d; font-size: 3rem; }
+
+.page-memories .memories { width: min(calc(100% - 20px), 760px); align-items: start; gap: 34px; }
+.memory { position: relative; transform: rotate(-2deg); }
+.memory:nth-child(even) { transform: rotate(2deg); }
+.memory-content {
+  padding: 12px 12px 20px;
+  border-radius: 4px;
+  background: #fffaf3;
+  color: var(--ink);
+  box-shadow: 0 14px 32px rgba(0,0,0,0.3);
+}
+.memory.is-sealed .memory-content { display: none; }
+.memory.is-open .memory-content { animation: memory-unfold 650ms ease-out; }
+.page-memories .memory .frame { aspect-ratio: auto; max-height: none; overflow: visible; border-radius: 2px; }
+.page-memories .memory img { height: auto; border-radius: 2px; }
+.memory-content figcaption { margin-top: 18px; }
+.memory-envelope {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height: 240px;
+  aspect-ratio: 1.35;
+  padding: 110px 18px 24px;
+  border: 1px solid #cfad86;
+  border-radius: 5px;
+  background: linear-gradient(145deg, #f7e3c4 50%, #ecd0a9 50%);
+  color: #63344a;
+  box-shadow: 0 14px 32px rgba(0,0,0,0.3), inset 0 -8px 15px rgba(142,92,44,0.09);
+  cursor: pointer;
+  overflow: hidden;
+}
+.memory-envelope[hidden] { display: none; }
+.envelope-flap {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 58%;
+  background: linear-gradient(#fbeed7, #dfba8e);
+  clip-path: polygon(0 0, 100% 0, 100% 8%, 52% 100%, 48% 100%, 0 8%);
+  transform-origin: top center;
+  transition: transform 500ms ease, opacity 500ms ease, clip-path 300ms ease;
+}
+.is-opening .envelope-flap {
+  transform: translateY(-60px) rotate(-12deg);
+  opacity: 0;
+  clip-path: polygon(0 0,100% 0,100% 60%,90% 70%,80% 58%,70% 73%,60% 60%,50% 75%,40% 61%,30% 73%,20% 59%,10% 72%,0 60%);
+}
+.envelope-seal {
+  position: absolute;
+  top: 42%;
+  left: calc(50% - 24px);
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #8e2444;
+  color: #f5d6a2;
+  box-shadow: inset 0 0 0 4px rgba(255,220,170,0.15), 0 3px 6px rgba(70,20,20,0.25);
+}
+.envelope-label { position: relative; display: block; margin-top: 55px; font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.5rem; }
+.envelope-label small { font: 0.8rem Nunito, "Segoe UI", sans-serif; }
+.memory .frame::before, .portrait-wrap::after, .song-artwork::before, .polaroid::before {
+  content: "";
+  position: absolute;
+  z-index: 4;
+  top: -10px;
+  left: 32%;
+  width: 36%;
+  height: 24px;
+  background: rgba(226,192,161,0.75);
+  box-shadow: 0 1px 3px rgba(60,20,20,0.1);
+  transform: rotate(-6deg);
+  pointer-events: none;
+}
+.portrait-wrap { transform: rotate(-3deg); }
+.polaroid { overflow: visible; }
+.dots { gap: clamp(3px, 1vw, 7px); }
+@keyframes memory-unfold {
+  from { opacity: 0; transform: translateY(35px) scale(0.92); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .memory.is-open .memory-content { animation: none; }
+  .envelope-flap { transition: none; }
+}
