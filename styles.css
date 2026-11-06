@@ -12,6 +12,25 @@
 .type-character { transition: opacity 80ms linear; }
 .type-pending { opacity: 0; }
 
+#candle-warning {
+  position: fixed;
+  bottom: calc(130px + env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(88vw, 480px);
+  z-index: 110;
+  padding: 16px 20px;
+  border: 2px solid var(--red);
+  border-radius: 16px;
+  background: #fff8ed;
+  color: var(--red-deep);
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(50, 0, 15, 0.25);
+  pointer-events: none;
+}
+
 #kiss-splash {
   position: fixed;
   inset: 0;

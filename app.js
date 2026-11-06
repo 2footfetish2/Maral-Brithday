@@ -13,6 +13,7 @@ const photoUrls = {
 const videoUrls = ["media/message.mp4", "media/message.webm", "media/message.mov"];
 
 function render() {
+  document.getElementById("candle-warning").hidden = true;
   if (!pages[index].classList.contains("page-cake")) clearCelebration();
   pages.forEach((page, i) => {
     const on = i === index;
@@ -37,6 +38,12 @@ let pageTransitioning = false;
 async function go(step) {
   const nextIndex = index + step;
   if (pageTransitioning || nextIndex < 0 || nextIndex >= pages.length) return;
+  if (step > 0 && pages[index].classList.contains("page-cake") && remainingCandles() > 0) {
+    const warning = document.getElementById("candle-warning");
+    warning.textContent = "Blow out all three candles before going to the next page. Tap each candle to make your wish!";
+    warning.hidden = false;
+    return;
+  }
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     index = nextIndex;
     render();
@@ -249,6 +256,7 @@ function remainingCandles() {
 }
 
 function updateHint() {
+  document.getElementById("candle-warning").hidden = true;
   const left = remainingCandles();
   if (left === 3) cakeHint.textContent = "Three candles glowing — tap them to make a wish!";
   else if (left === 2) cakeHint.textContent = "Two candles still glowing";
@@ -467,6 +475,7 @@ function showKissSplash() {
 document.addEventListener("click", (event) => {
   const target = event.target;
   if (!(target instanceof Element) || target.closest(".music-controls, .upload, input, video")) return;
+  if (target.closest("#next") && pages[index].classList.contains("page-cake") && remainingCandles() > 0) return;
   if (target.closest("#next:not(:disabled), #back:not(:disabled), .page img, .page h1, .page h2, .page h3, .page p, .page li, .page figcaption, .love-credit")) showKissSplash();
 }, { capture: true });
 
