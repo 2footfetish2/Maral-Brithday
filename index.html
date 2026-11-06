@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Great+Vibes&family=Nunito:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=photo-decor-1">
+  <link rel="stylesheet" href="styles.css?v=cute-first-1">
 </head>
 <body>
   <svg xmlns="http://www.w3.org/2000/svg" class="sprite" aria-hidden="true">
@@ -26,7 +26,11 @@
   <main id="book">
     <section class="page page-instructions is-active" data-title="Instructions" aria-labelledby="instruction-heading">
       <div class="instruction-layout">
-        <article class="instruction-card">
+        <article class="instruction-card instruction-with-photo">
+          <figure class="cute-photo">
+            <img src="media/cute.jpg" alt="Maral smiling in a favourite portrait">
+          </figure>
+          <div class="instruction-copy">
           <h1 id="instruction-heading">Instructions for my cutest cousin GooMaral</h1>
           <ol>
             <li>Tap the music icon in the top-right corner to play the background music. Use the slider to adjust the volume.</li>
@@ -35,6 +39,7 @@
             <li>Send me a message after you’ve explored my very first project!</li>
             <li>And finally, love you, Maral egch! ❤️</li>
           </ol>
+          </div>
         </article>
       </div>
     </section>
@@ -42,15 +47,10 @@
     <section class="page page-welcome" data-title="Welcome" hidden aria-label="Welcome">
       <div class="welcome-content">
         <p class="eyebrow">A birthday book for</p>
-        <div class="welcome-photos">
         <div class="portrait-wrap">
         <div class="frame portrait ready" data-slot="maral" data-locked="true">
           <img src="media/MARAL1.JPG" alt="Maral">
         </div>
-        </div>
-        <figure class="cute-photo">
-          <img src="media/cute.jpg" alt="Maral smiling in a favourite portrait">
-        </figure>
         </div>
         <h1>Maral</h1>
         <p class="welcome-signature">From Enguun</p>

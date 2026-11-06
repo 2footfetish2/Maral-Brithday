@@ -185,13 +185,19 @@ h1 {
 
 .song-artwork img { display: block; width: 100%; height: auto; border-radius: 3px; }
 
-.welcome-photos { display: flex; align-items: center; justify-content: center; gap: 20px; }
-.welcome-photos .portrait-wrap { width: auto; }
+.instruction-with-photo {
+  width: min(100%, 1000px);
+  display: grid;
+  grid-template-columns: minmax(0, 280px) minmax(0, 1fr);
+  align-items: center;
+  gap: 40px;
+}
 
 .cute-photo {
   position: relative;
-  width: clamp(110px, 28vw, 180px);
-  margin: 0;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
   padding: 8px 8px 24px;
   background: #fffaf6;
   border-radius: 4px;
@@ -211,6 +217,11 @@ h1 {
 }
 
 .cute-photo img { display: block; width: 100%; height: auto; border-radius: 2px; }
+
+@media (max-width: 700px) {
+  .instruction-with-photo { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .cute-photo { width: min(90%, 280px); }
+}
 .song-label {
   margin: 0 0 16px;
   color: var(--red);
