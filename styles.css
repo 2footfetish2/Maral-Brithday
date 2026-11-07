@@ -12,6 +12,19 @@
 .type-character { transition: opacity 80ms linear; }
 .type-pending { opacity: 0; }
 
+.monglish-card { width: min(100%, 800px); }
+.monglish-photo { margin: 28px 0 0; }
+.monglish-frame {
+  padding: 10px;
+  border: 1px solid #d8c5af;
+  border-radius: 0;
+  background: #fff;
+  box-shadow: 0 8px 22px rgba(90, 45, 40, 0.15);
+}
+.monglish-frame img { display: block; width: 100%; height: auto; border-radius: 0; object-fit: contain; }
+.monglish-letter { margin-top: 28px; font-size: 1rem; line-height: 1.85; overflow-wrap: break-word; }
+.monglish-letter p:last-child { margin-bottom: 0; }
+
 .scroll-reminder {
   margin: 0 auto 20px;
   padding: 14px 18px;
@@ -1247,7 +1260,8 @@ h1 {
 }
 .portrait-wrap { transform: rotate(-3deg); }
 .polaroid { overflow: visible; }
-.dots { gap: clamp(3px, 1vw, 7px); }
+.dots { gap: clamp(3px, 1vw, 7px); max-width: min(28vw, 180px); flex-wrap: wrap; margin: 0 auto; }
+.dots .dot { flex: 0 0 8px; }
 @keyframes memory-unfold {
   from { opacity: 0; transform: translateY(35px) scale(0.92); }
   to { opacity: 1; transform: none; }
