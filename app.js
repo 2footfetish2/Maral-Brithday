@@ -26,6 +26,7 @@ function render() {
   current.textContent = String(index + 1);
   back.disabled = index === 0;
   next.disabled = index === pages.length - 1;
+  document.querySelector(".love-credit").hidden = index !== 0 && index !== pages.length - 1;
   const title = pages[index].dataset.title;
   status.textContent = `Page ${index + 1} of ${pages.length}. ${title}`;
   document.querySelectorAll("video").forEach((video) => {
@@ -427,9 +428,9 @@ function typePageText(page) {
   typingFrame = null;
   typingCharacters = [];
 
-  const targets = [...page.querySelectorAll("h1, h2, h3, p, li"), document.querySelector(".love-credit")].filter(Boolean);
+  const targets = [...page.querySelectorAll("h1, h2, h3, p, li"), document.querySelector(".love-credit")].filter((element) => element && !element.hidden);
   targets.forEach((element) => {
-    if (element.closest("figcaption, .upload") || element.id === "cake-hint") return;
+    if (element.closest("figcaption, .upload") || element.id === "cake-hint" || element.classList.contains("scroll-reminder")) return;
     const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
     const nodes = [];
     while (walker.nextNode()) {
