@@ -14,11 +14,16 @@
 
 .scroll-reminder {
   margin: 0 auto 20px;
-  padding: 0 12px;
+  padding: 14px 18px;
   max-width: 760px;
-  color: var(--red-deep);
+  color: #fff8e9;
+  background: linear-gradient(110deg, #57203b, #a54362 55%, #713250);
+  border: 1px solid rgba(245, 208, 158, 0.65);
+  border-radius: 14px;
+  box-shadow: 0 5px 14px rgba(92, 36, 55, 0.18);
   font-size: 0.9rem;
   font-weight: 700;
+  letter-spacing: 0.045em;
   line-height: 1.6;
   text-align: center;
 }
